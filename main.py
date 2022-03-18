@@ -152,6 +152,8 @@ if __name__ == '__main__':
             exp_prior = datetime.combine(result[RES_EXPIRATION_PRIOR], datetime.min.time())
         if exp_new >= for_month + timedelta(days=365 * 21/12):
             result[RES_MEMBERSHIP_TYPE] = 'free'
+        elif exp_new < for_month + timedelta(days=365 * 3/12):
+            result[RES_MEMBERSHIP_TYPE] = 'expiration_change'
         elif not exp_prior or exp_prior + timedelta(days=365 * 6/12) < for_month:
             result[RES_MEMBERSHIP_TYPE] = 'new'
         else:
