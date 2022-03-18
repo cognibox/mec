@@ -138,17 +138,19 @@ if __name__ == '__main__':
 
         start = for_month
     results = list(filter(lambda x: x[RES_EXPIRATION_CHANGE_DATE].month == for_month.month
-                     and x[RES_EXPIRATION_CHANGE_DATE].year == for_month.year,
-                     results))
+                   and x[RES_EXPIRATION_CHANGE_DATE].year == for_month.year,
+                          results))
     for result in results:
         if not result[RES_EXPIRATION_NEW] or type(result[RES_EXPIRATION_NEW]) is datetime:
             exp_new = result[RES_EXPIRATION_NEW]
         else:
+            # noinspection PyTypeChecker
             exp_new = datetime.combine(result[RES_EXPIRATION_NEW], datetime.min.time())
 
         if not result[RES_EXPIRATION_PRIOR] or type(result[RES_EXPIRATION_PRIOR]) is datetime:
             exp_prior = result[RES_EXPIRATION_PRIOR]
         else:
+            # noinspection PyTypeChecker
             exp_prior = datetime.combine(result[RES_EXPIRATION_PRIOR], datetime.min.time())
         if exp_new >= for_month + timedelta(days=365 * 21/12):
             result[RES_MEMBERSHIP_TYPE] = 'free'
