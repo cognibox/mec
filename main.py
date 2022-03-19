@@ -45,8 +45,7 @@ parser.add_argument('cbx_data',
 
 parser.add_argument('output',
                     help=f'the xlsx file to be created with the analysis results:'
-                         f'\n{result_headers_text}\n\n**Please note that metadata columns from the'
-                         f' hc file are moved after the analysis data')
+                         f'\n{result_headers_text}')
 
 parser.add_argument('--for_month', dest='for_month', action='store',
                     help='to indicate what month the analysis is for in the following format: yyyy-mm')
