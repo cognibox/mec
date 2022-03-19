@@ -6,17 +6,17 @@ from openpyxl.utils import get_column_letter
 from datetime import datetime, timedelta
 import yaml
 
-CBX_HEADER_LENGTH = 5
+CBX_HEADER_LENGTH = 6
 # noinspection SpellCheckingInspection
-CBX_ID, CBX_COMPANY, CBX_CREATED_AT, CBX_USERNAME, CBX_OBJECT_CHANGES = range(CBX_HEADER_LENGTH)
+CBX_ID, CBX_COMPANY, CBX_PRICING_CODE, CBX_CREATED_AT, CBX_USERNAME, CBX_OBJECT_CHANGES = range(CBX_HEADER_LENGTH)
 
 # noinspection SpellCheckingInspection
-cbx_headers = ['id', 'name', 'created_at', 'username', 'object_changes']
+cbx_headers = ['id', 'name', 'pricing_code', 'created_at', 'username', 'object_changes']
 
-RESULT_HEADER_LENGTHS = 7
-RES_ID, RES_CONTRACTOR, RES_USERNAME, RES_EXPIRATION_CHANGE_DATE, RES_EXPIRATION_PRIOR, RES_EXPIRATION_NEW,\
+RESULT_HEADER_LENGTHS = 8
+RES_ID, RES_CONTRACTOR, RES_PRICING_CODE, RES_USERNAME, RES_EXPIRATION_CHANGE_DATE, RES_EXPIRATION_PRIOR, RES_EXPIRATION_NEW,\
     RES_MEMBERSHIP_TYPE = range(RESULT_HEADER_LENGTHS)
-res_headers = ['id', 'contractor_name', 'username', 'expiration_change_date', 'prior_expiration_date',
+res_headers = ['id', 'contractor_name', 'pricing_code', 'username', 'expiration_change_date', 'prior_expiration_date',
                'new_expiration_date', 'membership type']
 
 
@@ -135,6 +135,7 @@ if __name__ == '__main__':
             row_item[RES_USERNAME] = row[CBX_USERNAME]
             row_item[RES_ID] = row[CBX_ID]
             row_item[RES_CONTRACTOR] = row[CBX_COMPANY]
+            row_item[RES_PRICING_CODE] = row[CBX_PRICING_CODE]
 
         start = for_month
     results = list(filter(lambda x: x[RES_EXPIRATION_CHANGE_DATE].month == for_month.month
