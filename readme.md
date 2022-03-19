@@ -8,4 +8,10 @@ From Microsoft Powershell use the following (requires Docker)
 To see the command line tool help use the following:
 
 > docker run --rm -it -v ${pwd}:/home/script/data $(docker build -t nbem -q https://github.com/iguzu/mec.git) -h
-> 
+
+The tool will classify membership changes in the following way:
+
+1. Expiration that moves forward more than 24 months are considered  "free accounts"
+2. Expirations that moves less than 3 months in the future are consider "change_expiration" (i.e. not really a change)
+3. Expirations that have no prior expiration date or that the prior expiration date is 6 months prior, are considered "new accounts"
+4. All others are "renewal accounts"

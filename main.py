@@ -152,7 +152,7 @@ if __name__ == '__main__':
         else:
             # noinspection PyTypeChecker
             exp_prior = datetime.combine(result[RES_EXPIRATION_PRIOR], datetime.min.time())
-        if exp_new >= for_month + timedelta(days=365 * 21/12):
+        if exp_new >= for_month + timedelta(days=365 * 24/12):
             result[RES_MEMBERSHIP_TYPE] = 'free'
         elif exp_new < for_month + timedelta(days=365 * 3/12):
             result[RES_MEMBERSHIP_TYPE] = 'expiration_change'
