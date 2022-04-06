@@ -14,8 +14,8 @@ CBX_ID, CBX_COMPANY, CBX_PRICING_CODE, CBX_CREATED_AT, CBX_USERNAME, CBX_OBJECT_
 cbx_headers = ['id', 'name', 'pricing_code', 'created_at', 'username', 'object_changes']
 
 RESULT_HEADER_LENGTHS = 8
-RES_ID, RES_CONTRACTOR, RES_PRICING_CODE, RES_USERNAME, RES_EXPIRATION_CHANGE_DATE, RES_EXPIRATION_PRIOR, RES_EXPIRATION_NEW,\
-    RES_MEMBERSHIP_TYPE = range(RESULT_HEADER_LENGTHS)
+RES_ID, RES_CONTRACTOR, RES_PRICING_CODE, RES_USERNAME, RES_EXPIRATION_CHANGE_DATE, RES_EXPIRATION_PRIOR, \
+    RES_EXPIRATION_NEW, RES_MEMBERSHIP_TYPE = range(RESULT_HEADER_LENGTHS)
 res_headers = ['id', 'contractor_name', 'pricing_code', 'username', 'expiration_change_date', 'prior_expiration_date',
                'new_expiration_date', 'membership type']
 
@@ -156,6 +156,9 @@ if __name__ == '__main__':
             result[RES_MEMBERSHIP_TYPE] = 'free'
         elif exp_new < for_month + timedelta(days=365 * 3/12):
             result[RES_MEMBERSHIP_TYPE] = 'expiration_change'
+        elif not exp_prior:
+            result[RES_MEMBERSHIP_TYPE] = 'old new'
+
         elif not exp_prior or exp_prior + timedelta(days=365 * 6/12) < for_month:
             result[RES_MEMBERSHIP_TYPE] = 'new'
         else:
