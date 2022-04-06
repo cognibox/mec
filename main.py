@@ -156,10 +156,11 @@ if __name__ == '__main__':
             result[RES_MEMBERSHIP_TYPE] = 'free'
         elif exp_new < for_month + timedelta(days=365 * 3/12):
             result[RES_MEMBERSHIP_TYPE] = 'expiration_change'
-        elif exp_prior:
-            result[RES_MEMBERSHIP_TYPE] = 'old new'
-        elif not exp_prior or exp_prior + timedelta(days=365 * 6/12) < for_month:
+        elif not exp_prior:
             result[RES_MEMBERSHIP_TYPE] = 'new'
+        elif exp_prior + timedelta(days=365 * 6/12) < for_month:
+            result[RES_MEMBERSHIP_TYPE] = 'old new'
+
         else:
             result[RES_MEMBERSHIP_TYPE] = 'renewal'
     # write to excel
