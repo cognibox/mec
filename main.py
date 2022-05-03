@@ -19,6 +19,7 @@ RES_ID, RES_CONTRACTOR, RES_PRICING_CODE, RES_USERNAME, RES_EXPIRATION_CHANGE_DA
 res_headers = ['id', 'contractor_name', 'pricing_code', 'username', 'expiration_change_date', 'prior_expiration_date',
                'new_expiration_date', 'membership type']
 
+yaml.SafeLoader.add_constructor(u'!ruby/object:BigDecimal', lambda x, y: float(y.value.split(':')[1]))
 
 # noinspection PyShadowingNames
 def chunks(lst, n):
@@ -117,7 +118,7 @@ if __name__ == '__main__':
             parsed_data = yaml.safe_load(data)
         except yaml.YAMLError as exc:
             print(exc)
-            parsed_data = None
+            parsed_data = {}
 
         for key, value in parsed_data.items():
             if key == 'cbx_expiration_date':
@@ -160,7 +161,6 @@ if __name__ == '__main__':
             result[RES_MEMBERSHIP_TYPE] = 'new'
         elif exp_prior + timedelta(days=365 * 6/12) < for_month:
             result[RES_MEMBERSHIP_TYPE] = 'old new'
-
         else:
             result[RES_MEMBERSHIP_TYPE] = 'renewal'
     # write to excel
