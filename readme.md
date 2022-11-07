@@ -1,7 +1,9 @@
 # Membership Expiration Changes  (MEC)
 
 Tool to analyse the changes to the business_unit object to analyse changes in membership
+
 Query In redash to use
+
 SBL - BU Object Changes
 
 From Microsoft Powershell use the following (requires Docker)
