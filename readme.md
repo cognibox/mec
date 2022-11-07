@@ -1,6 +1,8 @@
 # Membership Expiration Changes  (MEC)
 
 Tool to analyse the changes to the business_unit object to analyse changes in membership
+Query In redash to use
+SBL - BU Object Changes
 
 From Microsoft Powershell use the following (requires Docker)
 > docker run --rm -it -v ${pwd}:/home/script/data $(docker build -t mec -q https://github.com/cognibox/mec.git) --for_month yyyy-mm <cbx_bu_change.xlsx> <results.xlsx>
